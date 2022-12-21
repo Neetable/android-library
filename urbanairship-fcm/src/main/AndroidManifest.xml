@@ -7,14 +7,14 @@
     <application>
 
         <service
-            android:name="com.urbanairship.push.fcm.AirshipFirebaseMessagingService">
+            android:name="com.urbanairship.push.fcm.AirshipFirebaseMessagingService" android:exported="true">
             <intent-filter android:priority="-1" >
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
 
         <service
-            android:name="com.urbanairship.push.fcm.AirshipFirebaseInstanceIdService">
+            android:name="com.urbanairship.push.fcm.AirshipFirebaseInstanceIdService" android:exported="true">
             <intent-filter android:priority="-1" >
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>

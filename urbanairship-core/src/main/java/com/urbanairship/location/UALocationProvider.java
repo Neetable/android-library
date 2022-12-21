@@ -75,7 +75,7 @@ class UALocationProvider {
         }
 
         try {
-            PendingIntent pendingIntent = PendingIntent.getService(context, availableAdapter.getRequestCode(), this.locationUpdateIntent, PendingIntent.FLAG_NO_CREATE);
+            PendingIntent pendingIntent = PendingIntent.getService(context, availableAdapter.getRequestCode(), this.locationUpdateIntent, PendingIntent.FLAG_IMMUTABLE);
             if (pendingIntent != null) {
                 availableAdapter.cancelLocationUpdates(context, pendingIntent);
             }
@@ -101,7 +101,7 @@ class UALocationProvider {
 
         Logger.verbose("UALocationProvider - Requesting location updates: " + options);
         try {
-            PendingIntent pendingIntent = PendingIntent.getService(context, availableAdapter.getRequestCode(), this.locationUpdateIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getService(context, availableAdapter.getRequestCode(), this.locationUpdateIntent, PendingIntent.FLAG_IMMUTABLE);
             availableAdapter.requestLocationUpdates(context, options, pendingIntent);
         } catch (Exception ex) {
             Logger.error("Unable to request location updates: " + ex.getMessage());
@@ -158,7 +158,7 @@ class UALocationProvider {
                  * and there is no way to determine what provider was used previously.
                  */
                 try {
-                    PendingIntent pendingIntent = PendingIntent.getService(context, adapter.getRequestCode(), this.locationUpdateIntent, PendingIntent.FLAG_NO_CREATE);
+                    PendingIntent pendingIntent = PendingIntent.getService(context, adapter.getRequestCode(), this.locationUpdateIntent, PendingIntent.FLAG_IMMUTABLE);
                     if (pendingIntent != null) {
                         adapter.cancelLocationUpdates(context, pendingIntent);
                     }
@@ -186,7 +186,7 @@ class UALocationProvider {
         connect();
 
         if (availableAdapter != null) {
-            PendingIntent pendingIntent = PendingIntent.getService(context, availableAdapter.getRequestCode(), this.locationUpdateIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getService(context, availableAdapter.getRequestCode(), this.locationUpdateIntent, PendingIntent.FLAG_IMMUTABLE);
             availableAdapter.onSystemLocationProvidersChanged(context, options, pendingIntent);
         }
     }
@@ -204,6 +204,6 @@ class UALocationProvider {
             return false;
         }
 
-        return getService(context, availableAdapter.getRequestCode(), this.locationUpdateIntent, PendingIntent.FLAG_NO_CREATE) != null;
+        return getService(context, availableAdapter.getRequestCode(), this.locationUpdateIntent, PendingIntent.FLAG_IMMUTABLE) != null;
     }
 }

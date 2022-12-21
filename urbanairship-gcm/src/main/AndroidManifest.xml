@@ -21,6 +21,7 @@
         </service>
 
         <receiver
+                  android:exported="false"
             android:name="com.urbanairship.push.gcm.GcmPushReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">
 
