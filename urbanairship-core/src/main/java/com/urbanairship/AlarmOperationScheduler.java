@@ -125,7 +125,7 @@ public class AlarmOperationScheduler implements OperationScheduler {
                     .putExtra(ID_EXRA, operationId)
                     .addCategory(toString());
 
-            final PendingIntent pendingIntent = PendingIntent.getBroadcast(context, operationId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            final PendingIntent pendingIntent = PendingIntent.getBroadcast(context, operationId, intent, PendingIntent.FLAG_UPDATE_CURRENT |PendingIntent.FLAG_MUTABLE);
             alarmManager.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + delay, pendingIntent);
 
             operation.addOnCancel(new CancelableOperation() {
