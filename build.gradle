@@ -2,6 +2,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        mavencenter()
     }
 
     dependencies {
@@ -20,6 +21,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        mavencenter()
     }
     apply plugin: 'maven-publish'
 }
