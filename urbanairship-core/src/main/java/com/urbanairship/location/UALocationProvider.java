@@ -101,7 +101,7 @@ class UALocationProvider {
 
         Logger.verbose("UALocationProvider - Requesting location updates: " + options);
         try {
-            PendingIntent pendingIntent = PendingIntent.getService(context, availableAdapter.getRequestCode(), this.locationUpdateIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getService(context, availableAdapter.getRequestCode(), this.locationUpdateIntent, PendingIntent.FLAG_UPDATE_CURRENT |FLAG_MUTABLE);
             availableAdapter.requestLocationUpdates(context, options, pendingIntent);
         } catch (Exception ex) {
             Logger.error("Unable to request location updates: " + ex.getMessage());
@@ -186,7 +186,7 @@ class UALocationProvider {
         connect();
 
         if (availableAdapter != null) {
-            PendingIntent pendingIntent = PendingIntent.getService(context, availableAdapter.getRequestCode(), this.locationUpdateIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getService(context, availableAdapter.getRequestCode(), this.locationUpdateIntent, PendingIntent.FLAG_UPDATE_CURRENT |FLAG_MUTABLE);
             availableAdapter.onSystemLocationProvidersChanged(context, options, pendingIntent);
         }
     }
