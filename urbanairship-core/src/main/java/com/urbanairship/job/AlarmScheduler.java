@@ -37,7 +37,7 @@ class AlarmScheduler implements Scheduler {
     public void cancel(@NonNull Context context, @NonNull int scheduleId) {
         Intent intent = AirshipService.createIntent(context, null, null);
 
-        PendingIntent pendingIntent = PendingIntent.getService(context, scheduleId, intent, PendingIntent.FLAG_NO_CREATE);
+        PendingIntent pendingIntent = PendingIntent.getService(context, scheduleId, intent, PendingIntent.FLAG_NO_CREATE | PendingIntent.FLAG_IMMUTABLE);
         if (pendingIntent != null) {
             AlarmManager alarmManager = (AlarmManager) context
                     .getSystemService(Context.ALARM_SERVICE);
@@ -85,7 +85,7 @@ class AlarmScheduler implements Scheduler {
         Intent intent = AirshipService.createIntent(context, jobInfo, extras);
         // Schedule the intent
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        PendingIntent pendingIntent = PendingIntent.getService(context, scheduleId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getService(context, scheduleId, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
 
         try {
             Logger.verbose("AlarmScheduler - Scheduling jobInfo: " + jobInfo + " with delay: " + delay);

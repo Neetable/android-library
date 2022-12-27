@@ -17,6 +17,7 @@
 
 
         <receiver
+                  android:exported="false"
             android:name="com.urbanairship.push.adm.AdmPushReceiver"
             android:permission="com.amazon.device.messaging.permission.SEND">
 
